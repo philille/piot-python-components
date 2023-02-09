@@ -44,12 +44,19 @@ enableMqttClient = True
 enableCoapServer = False
 enableCoapClient = False
 enableSystemPerformance = True
-enableSensing    = False
+enableSensing    = True
 enableLogging    = True
 pollCycleSecs    = 5
 testGdaDataPath  = /tmp/gda-data
 testCdaDataPath  = /tmp/cda-data
 testEmptyApp     = False
+enableSimulator = True
+ENABLE_SYSTEM_PERF_KEY = 'enableSystemPerformance'
+ENABLE_SENSING_KEY = 'enableSensing'
+
+HANDLE_TEMP_CHANGE_ON_DEVICE_KEY = 'handleTempChangeOnDevice'
+TRIGGER_HVAC_TEMP_FLOOR_KEY = 'triggerHvacTempFloor'
+TRIGGER_HVAC_TEMP_CEILING_KEY = 'triggerHvacTempCeiling'
 
 # configurable limits for sensor simulation
 humiditySimFloor   =   35.0

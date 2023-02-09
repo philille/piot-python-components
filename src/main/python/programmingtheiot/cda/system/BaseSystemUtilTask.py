@@ -1,4 +1,4 @@
-#####
+ #####
 # 
 # This class is part of the Programming the Internet of Things project.
 # 
@@ -8,6 +8,7 @@
 #
 
 import programmingtheiot.common.ConfigConst as ConfigConst
+from programmingtheiot.data.SensorData import SensorData
 
 class BaseSystemUtilTask():
 	"""
@@ -29,4 +30,3 @@ class BaseSystemUtilTask():
 	
 	def getTelemetryValue(self) -> float:
 		pass
-	
