@@ -21,7 +21,7 @@ class BaseSystemUtilTask():
 	
 	
 	def getName(self) -> str:
-			return self.namepass
+			return self.name
 	
 	def getTypeID(self) -> int:
 			return self.typeID
