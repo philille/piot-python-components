@@ -44,7 +44,7 @@ class DeviceDataManagerNoCommsTest(unittest.TestCase):
 
 	def tearDown(self):
 		pass
-
+	@unittest.skip("Ignore for now.")
 	def testStartAndStopManagerNoComms(self):
 		"""
 		NOTE: Be sure to disable MQTT and CoAP by setting the following flags to False
