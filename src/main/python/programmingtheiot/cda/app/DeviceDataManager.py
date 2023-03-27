@@ -45,6 +45,10 @@ class DeviceDataManager(IDataMessageListener):
 		self.enableSensing      = \
 			self.configUtil.getBoolean( \
 				section = ConfigConst.CONSTRAINED_DEVICE, key = ConfigConst.ENABLE_SENSING_KEY)
+			
+		self.enableCoapClient = \
+			self.configUtil.getBoolean( \
+				section = ConfigConst.CONSTRAINED_DEVICE, key = ConfigConst.ENABLE_COAP_CLIENT_KEY)
 		
 		# NOTE: this can also be retrieved from the configuration file
 		self.enableActuation    = True
@@ -71,6 +75,9 @@ class DeviceDataManager(IDataMessageListener):
 		if self.enableActuation:
 			self.actuatorAdapterMgr = ActuatorAdapterManager(dataMsgListener = self)
 			logging.info("Local actuation capabilities enabled")
+		
+		if self.enableCoapClient :
+			self.coapClient = CoapClientConnector(dataMsgListener = self)
 		
 		self.handleTempChangeOnDevice = \
 			self.configUtil.getBoolean( \

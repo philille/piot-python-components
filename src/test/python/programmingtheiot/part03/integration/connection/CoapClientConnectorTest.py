@@ -101,9 +101,6 @@ class CoapClientConnectorTest(unittest.TestCase):
 
 	@unittest.skip("Ignore for now.")
 	def testPostSensorMessageCon(self):
-		"""
-		Comment the annotation to test CON POST
-		"""
 		data = SensorData()
 		jsonData = DataUtil().sensorDataToJson(data = data)
 		
@@ -112,15 +109,11 @@ class CoapClientConnectorTest(unittest.TestCase):
 	
 	@unittest.skip("Ignore for now.")
 	def testPostSensorMessageNon(self):
-		"""
-		Comment the annotation to test NON POST
-		"""
 		data = SensorData()
 		jsonData = DataUtil().sensorDataToJson(data = data)
 		
 		self.coapClient.sendPostRequest( \
 			resource = ResourceNameEnum.CDA_SENSOR_MSG_RESOURCE, enableCON = False, payload = jsonData, timeout = 5)
-	
 	@unittest.skip("Ignore for now.")
 	def testPutSensorMessageCon(self):
 		"""
@@ -149,7 +142,7 @@ class CoapClientConnectorTest(unittest.TestCase):
 		Comment the annotation to test Observe
 		"""
 		self._startObserver()
-		sleep(30)
+		sleep(20)
 		self._stopObserver()
 		
 	def _startObserver(self):
