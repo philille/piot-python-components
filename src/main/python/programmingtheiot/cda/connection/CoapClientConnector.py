@@ -26,6 +26,7 @@ from coapthon import defines
 from coapthon.client.helperclient import HelperClient
 from coapthon.utils import parse_uri
 from coapthon.utils import generate_random_token
+from pip._vendor.distlib.util import resolve
 
 
 class CoapClientConnector(IRequestResponseClient):
@@ -63,9 +64,9 @@ class CoapClientConnector(IRequestResponseClient):
 			logging.info("Failed to resolve host: " + self.host)
 	
 	def sendDiscoveryRequest(self, timeout: int = IRequestResponseClient.DEFAULT_TIMEOUT) -> bool:
-			logging.info("Discovering remote resources...")
+		logging.info("Discovering remote resources...")
 			
-			return self.sendGetRequest(resource = None, name = '.well-known/core', enableCON = False, timeout = timeout)
+		return self.coapClient.discover(callback=self._onDiscoveryResponse, timeout=10)
 
 	#Support for DELETE requests
 	def sendDeleteRequest(self, resource: ResourceNameEnum = None, name: str = None, enableCON: bool = False, timeout: int = IRequestResponseClient.DEFAULT_TIMEOUT) -> bool:
@@ -274,6 +275,8 @@ class CoapClientConnector(IRequestResponseClient):
 				return
 			
 			logging.info('DELETE response received: %s', response.payload)
+	def _onDiscoveryResponse(self, response):
+		logging.info(f"Received discovery response: {response}")
 			
 	
 class HandleActuatorEvent():
@@ -308,3 +311,4 @@ class HandleActuatorEvent():
 						self.listener.handleActuatorCommandMessage(data = data)
 					except:
 						logging.warning("Failed to decode actuator data. Ignoring: %s", jsonData)
+						
