@@ -46,9 +46,11 @@ class ActuatorAdapterManager(object):
 			leDisplayModule = import_module('programmingtheiot.cda.emulated.LedDisplayEmulatorTask', 'LedDisplayEmulatorTask')
 			leClazz = getattr(leDisplayModule, 'LedDisplayEmulatorTask')
 			self.ledDisplayActuator = leClazz()
-	
-	def __init__(self):
-		pass
+
+	def __init__(self, dataMsgListener: IDataMessageListener = None):
+		self.dataMsgListener = dataMsgListener
+
+		self.configUtil = ConfigUtil()
 
 	def sendActuatorCommand(self, data: ActuatorData) -> bool:
 		pass

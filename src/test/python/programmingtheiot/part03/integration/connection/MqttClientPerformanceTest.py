@@ -53,10 +53,16 @@ class MqttClientConnectorTest(unittest.TestCase):
 		
 		logging.info("Connect and Disconnect: " + str(elapsedMillis) + " ms")
 		
+	"""
+	QoS levels: QoS 0
+	"""
 	@unittest.skip("Ignore for now.")
 	def testPublishQoS0(self):
 		self._execTestPublish(self.MAX_TEST_RUNS, 0)
-
+		
+	"""
+	QoS levels: QoS 1
+	"""
 	@unittest.skip("Ignore for now.")
 	def testPublishQoS1(self):
 		self._execTestPublish(self.MAX_TEST_RUNS, 1)
@@ -70,7 +76,7 @@ class MqttClientConnectorTest(unittest.TestCase):
 		
 		sensorData = SensorData()
 		payload = DataUtil().sensorDataToJson(sensorData)
-		payloadLen = len(payload)
+		
 		startTime = time.time_ns()
 		
 		for seqNo in range(0, maxTestRuns):
@@ -81,12 +87,7 @@ class MqttClientConnectorTest(unittest.TestCase):
 		
 		self.assertTrue(self.mqttClient.disconnectClient())
 		
-		logging.info( \
-			"\n\tTesting Publish: QoS = %r | msgs = %r | payload size = %r | start = %r | end = %r | elapsed = %r", \
-			qos, maxTestRuns, payloadLen, startTime / 1000, endTime / 1000, elapsedMillis / 1000)
-		
-		#logging.info("Publish message - QoS " + str(qos) + " [" + str(maxTestRuns) + "]: " + str(elapsedMillis) + " ms")
+		logging.info("Publish message - QoS " + str(qos) + " [" + str(maxTestRuns) + "]: " + str(elapsedMillis) + " ms")
 	
 if __name__ == "__main__":
 	unittest.main()
-	

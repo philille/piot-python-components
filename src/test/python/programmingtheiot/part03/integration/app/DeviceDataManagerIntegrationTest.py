@@ -48,15 +48,16 @@ class DeviceDataManagerIntegrationTest(unittest.TestCase):
 	def tearDown(self):
 		pass
 
-	@unittest.skip("Ignore for now.")
+	#@unittest.skip("Ignore for now.")
 	def testDeviceDataMgrTimedIntegration(self):
 		ddMgr = DeviceDataManager()
 		ddMgr.startManager()
 		
-		sleep(60)
+		sleep(30)
 		
 		ddMgr.stopManager()
-		
+
+
 if __name__ == "__main__":
 	unittest.main()
 	

@@ -40,11 +40,12 @@ class DataUtil():
 		jsonData = json.dumps(sensorData, indent = 4, cls = JsonDataEncoder)
 		return jsonData
 
-	def systemPerformanceDataToJson(self, sysPerfData):
-		if not sysPerfData:
-			logging.debug("SystemPerformanceData is null. Returning empty string.")
-			return "" 
-		jsonData = json.dumps(sysPerfData, indent = 4, cls = JsonDataEncoder)
+	def systemPerformanceDataToJson(self, data: SystemPerformanceData = None):
+		if not data:
+			logging.debug("SystemPerformanceData is null.Returning empty string.")
+			return ""
+
+		jsonData = self._generateJsonData(obj=data, useDecForFloat=False)
 		return jsonData
 	
 	def jsonToActuatorData(self, jsonData):
